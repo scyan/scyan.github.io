@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/lib/sea.js" type="text/javascript"></script>
+<script src="js/lib/jquery-1.4.4.min.js" type="text/javascript"></script>
+
+<script src="js/lib/kinetic2d-v1.0.0.js" type="text/javascript"></script>
+<script src="js/lib/jstorage.js" type="text/javascript"></script>
+
+
+
+
+<style>
+
+.container{margin:50px 100px;}
+.canvas{
+	position: absolute;
+
+   display:block;
+}
+#speed-handle{
+    position:absolute;
+	z-index:99;
+	margin-left:350px;
+	margin-top:120px;
+}
+.handle{
+    position:absolute;
+    display:block;
+    width:20px;
+	height:20px;
+	background:#808080;
+	color:white;
+	text-align:center;
+	text-decoration:none
+}
+.handle-plus{
+	margin-left:40px;
+}
+.speed{
+    position:absolute;
+    display:block;
+	margin-left:25px;
+    width:20px;
+	height:20px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="container" class="container">
+<canvas id="bkCanvas" width="500" height="550" class="canvas">your browser does not support html5.您的浏览器不支持html5哟╮(╯_╰)╭,请使用chrome或者火狐或者一切支持html5的浏览器打开。
+</canvas>
+<canvas id="handleCanvas" width="500" height="550" class="canvas"></canvas>
+<p id="speed-handle"><span >调节移动速度</span><a href="#"class="handle handle-minus" onclick="slowDown()">-</a><span id="speed"class="speed"></span><a href="#"class="handle handle-plus" onclick="speedUp()">+</a></p>
+</div>	
+<script type="text/javascript" >
+seajs.config({
+  base: "",
+  alias: {
+//    "jquery": "js/lib/jquery-1.4.4.min.js"
+  }
+})
+seajs.use("./js/main");
+</script>
+</body>
+</html>

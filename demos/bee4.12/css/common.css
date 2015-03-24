@@ -1,0 +1,32 @@
+.container{margin:50px 100px;}
+.canvas{
+	position: absolute;
+
+   display:block;
+}
+#speed-handle{
+    position:absolute;
+	z-index:99;
+	margin-left:350px;
+	margin-top:120px;
+}
+.handle{
+    position:absolute;
+    display:block;
+    width:20px;
+	height:20px;
+	background:#808080;
+	color:white;
+	text-align:center;
+	text-decoration:none
+}
+.handle-plus{
+	margin-left:40px;
+}
+.speed{
+    position:absolute;
+    display:block;
+	margin-left:25px;
+    width:20px;
+	height:20px;
+}
