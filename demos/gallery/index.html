@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/gallery.css"/>
+<script type="text/javascript" src="js/jquery.js?v=1.0"></script>
+<script type="text/javascript" src="js/gallery.js?v=1.0"></script>
+<style>
+#test{margin:200px;}
+</style>
+
+</head>
+<body>
+<div id="test">
+<div id="shell"></div>
+<div>
+<div id="test">
+<div id="shell2"></div>
+</div>
+<script type="text/javascript">
+/* (function($){
+	$('#shell').gallery([{src:'http://ww2.sinaimg.cn/square/c0788b86gw1eho77z0vbsj20c50d4ac1.jpg',target_src:'http://ww1.sinaimg.cn/bmiddle/bcc93f49gw1eh3la36ul2j20m853chdt.jpg'}
+	]);
+
+	
+})(jQuery); */
+(function($){
+	$('#shell').gallery({imgs:[{src:'http://ww2.sinaimg.cn/square/c0788b86gw1eho77z0vbsj20c50d4ac1.jpg',target_src:'http://ww1.sinaimg.cn/square/c0788b86gw1eho77wruqlj20c72jpdww.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/c0788b86gw1eho77xx2njj20go0kntaj.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/c0788b86gw1eho77xx2njj20go0kntaj.jpg',alt:'testimg'},
+	{src:'http://ww4.sinaimg.cn/thumbnail/bfc243a3jw1ej2qdcmv9vj20k00dcgon.jpg',target_src:'http://ww4.sinaimg.cn/bmiddle/bfc243a3jw1ej2qdcmv9vj20k00dcgon.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+	{src:'http://ww2.sinaimg.cn/square/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg',target_src:'http://ww2.sinaimg.cn/bmiddle/69fce6e5jw1ej1ljh0llmj20c808r0tv.jpg'},
+
+	]});
+
+	
+})(jQuery);
+</script>
+</body>
+</html>

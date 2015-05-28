@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="js/lib/jquery-1.4.4.min.js" type="text/javascript"></script>
+<style>
+ .fast-animite {
+  -webkit-transition: all .2s ease-out;
+  -moz-transition: all .2s ease-out;
+  -ms-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out; }
+.slider{position:relative;}
+.slider ul{
+	width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  letter-spacing: -.24em;
+  -webkit-backface-visibility: hidden;
+}
+.slider .item{
+	display:inline-block;
+ }
+</style>
+</head>
+<body>
+<div class="slider">
+	<ul class="sliderUl">
+		<li class="item"><img src="http://ww2.sinaimg.cn/large/005O6SuGjw1esgo8jklhdj30iw08i7wk.jpg"></li>
+		<li class="item"><img src="http://ww4.sinaimg.cn/mw720/005O6SuGjw1esgoa4gtgoj30iw08idih.jpg"></li>
+		<li class="item"><img src="http://ww3.sinaimg.cn/mw720/005O6SuGjw1esisuqhg62j30iw08iade.jpg"></li>
+	</ul>
+</div>
+<div id="eventTest" style="width:100px;height:100px;background:#f00">aaa</div>
+<script type="text/javascript">
+$(function(){
+	var click1=function(){console.log(1);}
+	var click2=function(){console.log(2);}
+	$('#eventTest').bind('click',click1);
+	$('#eventTest').bind('click',click2);
+	
+	$('#eventTest').unbind('click',click2);
+	var imgs=['http://ww2.sinaimg.cn/large/005O6SuGjw1esgo8jklhdj30iw08i7wk.jpg',
+	          'http://ww4.sinaimg.cn/mw720/005O6SuGjw1esgoa4gtgoj30iw08idih.jpg',
+	          'http://ww3.sinaimg.cn/mw720/005O6SuGjw1esisuqhg62j30iw08iade.jpg'
+	          ];
+	var count=3;
+	var current=1;
+	var imgItems=$('img');
+	function moveSlider (x){
+        sliderX = x;
+        $('.sliderUl').css('-webkit-transform', 'translate3d(' + x + 'px, 0, 0)');
+    }
+	var len=-680;
+	var pos=len*2;
+	var timer=10;
+	var init=function(){
+			moveSlider(len);
+		$('.sliderUl').click(function(){
+				 clearInterval(start);
+		});
+		  $('.sliderUl').bind('webkitTransitionEnd', function(){
+			  current++;
+				if(current>=count){
+					current=0;
+				}
+			  $('.sliderUl').removeClass('fast-animite');
+			  $.each(imgItems,function(i,item){
+					var i=(current-1)+i;
+					if(i>=count){
+						i=0;
+					}else if(i<0){
+						i=count-1;
+					}
+					$(item).attr('src',imgs[i]);
+				});
+			  moveSlider(len);
+		  });
+	}
+	init();
+	var start=setInterval(function(){
+		$('.sliderUl').addClass('fast-animite');
+		moveSlider(pos);
+		/*len-=2;
+		if(len<=-680*2){
+			current++;
+			if(current>=count){
+				current=0;
+			}
+			$.each(imgItems,function(i,item){
+				var i=(current-1)+i;
+				if(i>=count){
+					i=0;
+				}
+				$(item).attr('src',imgs[i]);
+			});
+			clearInterval(test);
+			len=-680;
+			 $('.sliderUl').css('-webkit-transform', 'translate3d(-680px, 0, 0)');
+		}*/
+	},3000);
+});
+
+</script>
+</body>
+
+</html>

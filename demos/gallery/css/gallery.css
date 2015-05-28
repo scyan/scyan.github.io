@@ -1,0 +1,45 @@
+/*** Reset ***/
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,pre,
+dl,dt,dd,ul,ol,li,th,td,
+form,formset,legend,button,input,textarea{margin:0;padding:0;}
+formset,img{border:0;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+a,input,textarea{outline-style:none;}
+textarea{resize:none;-webkit-appearance:none;}
+
+/* font */
+body,button,input,select,textarea{font:12px/1.6 Arial,Helvetica,sans-serif;_font-family:\5b8b\4f53,SimSun,sans-serif;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+button,input,select,textarea{font-size:100%;/* 使得表单元素在 ie 下能继承字体大小。但 optgroup 无法扶正 */}
+th,em,i{font-style:normal;font-weight:normal;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+
+.hide{display:none;}
+/* gallery */
+.gallery-shell{display:block;width:433px;}
+.gallery-squares {display:block;overflow:hidden;width:255px;
+}
+	.gallery-squares li{float: left;display: inline;margin: 5px 0 0 5px;overflow: hidden;position: relative;cursor:url(../icons/zoom-out.cur),auto;}
+		.gallery-squares li img{display:inline-block;float:left;width:80px;height:80px;}
+
+.gallery{width:100%;}
+	.gallery .showBox{width:100%;position:relative;}
+	.gallery .showBox.leftCursor{cursor:url(../icons/pic_prev.cur),auto;}
+	.gallery .showBox.rightCursor{cursor:url(../icons/pic_next.cur),auto;}
+	.gallery .showBox.smallCursor{cursor:url(../icons/zoom-in.cur),auto;}
+	 	.gallery .showBox img{display:block;margin:auto;width:100%;} 
+	.gallery .chooseBox{width: 440px;height: 56px;margin-top: 15px;}
+		.gallery .stagBox{float: left;width: 413px;height: 56px;overflow: hidden;}
+			.gallery .stagBox ul{height:56px; width:8000px;margin:0;}
+				.gallery .stagBox li{float: left;_display: inline;width: 56px;height: 56px;margin: 0 3px 0 0;}
+					.gallery .stagBox li a{display:inline-block;border:solid 2px transparent;}
+						.gallery .stagBox li img{width: 50px;height: 50px;border-width: 1px;border-style: solid;}
+		.gallery .chooseBox .arrow{font-family: "SimSun";cursor:pointer;display: inline-block;width: 12px;height: 50px;margin-top: 3px;text-decoration: none;line-height: 50px;text-align: center;font-weight: 600;background:#ccc;}
+		.gallery .chooseBox .arrow.disabled{background:#eee;color:#fff;cursor:auto;}
+		.gallery .chooseBox .arrow.pre{float: left;border-bottom-left-radius: 4px;border-top-left-radius: 4px;}
+		.gallery .chooseBox .arrow.next{float:right;border-bottom-right-radius: 4px;border-top-right-radius: 4px;}
+
+.gallery-shell .loading_gif{position:absolute;width:16px !important;height:16px;left:50%;top:50%;margin:-8px 0 0 -8px;}{position: absolute;top: 50%;left: 50%;width: auto !important;height: auto !important;margin-left: -8px;margin-top:-8px;}
