@@ -11,7 +11,7 @@
   -ms-transition: all .2s ease-out;
   -o-transition: all .2s ease-out;
   transition: all .2s ease-out; }
-.slider{position:relative;}
+.slider{position:relative;width:500px;height:200px;}
 .slider ul{
 	width: 100%;
   height: 100%;
@@ -24,21 +24,30 @@
 }
 .slider .item{
 	display:inline-block;
+  width: 100%;
+  height: 100%;
+ }
+ .slider div{
+	  -webkit-backface-visibility: hidden;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
  }
 </style>
 </head>
 <body>
 <div class="slider">
 	<ul class="sliderUl">
-		<li class="item"><img src="http://ww2.sinaimg.cn/large/005O6SuGjw1esgo8jklhdj30iw08i7wk.jpg"></li>
-		<li class="item"><img src="http://ww4.sinaimg.cn/mw720/005O6SuGjw1esgoa4gtgoj30iw08idih.jpg"></li>
-		<li class="item"><img src="http://ww3.sinaimg.cn/mw720/005O6SuGjw1esisuqhg62j30iw08iade.jpg"></li>
+		<li class="item"><div></div></li>
+		<li class="item"><div></div></li>
+		<li class="item"><div></div></li>
 	</ul>
 </div>
 <div id="eventTest" style="width:100px;height:100px;background:#f00">aaa</div>
 <script type="text/javascript">
 $(function(){
-	var click1=function(){console.log(1);}
+	var click1=function(){console.log(arguments);}
 	var click2=function(){console.log(2);}
 	$('#eventTest').bind('click',click1);
 	$('#eventTest').bind('click',click2);
@@ -50,21 +59,71 @@ $(function(){
 	          ];
 	var count=3;
 	var current=1;
-	var imgItems=$('img');
-	function moveSlider (x){
-        sliderX = x;
-        $('.sliderUl').css('-webkit-transform', 'translate3d(' + x + 'px, 0, 0)');
-    }
+	var imgItems=$('.slider div');
 	var len=-680;
 	var pos=len*2;
 	var timer=10;
+	var down=false;
+	var ox=0;
+	var ani=null;
+	var dir='left';
+	function moveSlider (x){
+        if(x==pos){
+        	dir='left';
+        }else if(x==0){
+        	dir='right';
+        }
+        $('.sliderUl').css('-webkit-transform', 'translate3d(' + x + 'px, 0, 0)');
+    }
+	function start(){
+		ani=setInterval(function(){
+			$('.sliderUl').addClass('fast-animite');
+			moveSlider(pos);
+		},3000);
+	}
 	var init=function(){
+		$.each(imgItems,function(i,item){
+			$(item).css('background','url('+imgs[i]+')');
+		});
 			moveSlider(len);
-		$('.sliderUl').click(function(){
-				 clearInterval(start);
+		
+		$('.sliderUl').mousedown(function(event){
+			var e=event||window.event;
+			down=true;
+			ox=e.offsetX;
+				 clearInterval(ani);
+		});
+		$('.sliderUl').mousemove(function(event){
+			var e=event||window.event;
+			if(down){
+				var sx=e.offsetX;
+				if(Math.abs(sx-ox)>=10){
+					moveSlider(sx-ox);
+				}
+				//console.log(e);
+			}
+		});
+		$('.sliderUl').mouseup(function(event){
+			var e=event||window.event;
+			console.log('up');
+			down=false;
+			var sx=e.offsetX;
+			if(sx<ox){
+				//左
+				$('.sliderUl').addClass('fast-animite');
+				moveSlider(pos);
+			}else if(sx>ox){
+				$('.sliderUl').addClass('fast-animite');
+				moveSlider(0);
+			}
 		});
 		  $('.sliderUl').bind('webkitTransitionEnd', function(){
-			  current++;
+			  if(dir='left'){
+				  
+			  	current++;
+			  }else{
+				  current--;
+			  }
 				if(current>=count){
 					current=0;
 				}
@@ -76,35 +135,20 @@ $(function(){
 					}else if(i<0){
 						i=count-1;
 					}
-					$(item).attr('src',imgs[i]);
+					$(item).css('background','url('+imgs[i]+')');
 				});
 			  moveSlider(len);
 		  });
+		start();
 	}
 	init();
-	var start=setInterval(function(){
-		$('.sliderUl').addClass('fast-animite');
-		moveSlider(pos);
-		/*len-=2;
-		if(len<=-680*2){
-			current++;
-			if(current>=count){
-				current=0;
-			}
-			$.each(imgItems,function(i,item){
-				var i=(current-1)+i;
-				if(i>=count){
-					i=0;
-				}
-				$(item).attr('src',imgs[i]);
-			});
-			clearInterval(test);
-			len=-680;
-			 $('.sliderUl').css('-webkit-transform', 'translate3d(-680px, 0, 0)');
-		}*/
-	},3000);
+	
 });
-
+var a=[1,2];
+var b=a.slice();
+b[0]=3;
+console.log(b);
+console.log(a);
 </script>
 </body>
 

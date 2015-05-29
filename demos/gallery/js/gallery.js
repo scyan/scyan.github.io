@@ -190,10 +190,11 @@ function Gallery(options, $obj) {
 			clearTimeout(mouseMoveTimer);
 			mouseMoveTimer = setTimeout(function(){
 				mouseMoveFunc.call(context, e);
-			}, 50);
+			}, 20);
 		});
 
 		var mouseMoveFunc=function(e){
+			console.log('mouse move');
 			if(e.offsetX==undefined){
 				var x=e.pageX-$(this).offset().left;
 			}else{

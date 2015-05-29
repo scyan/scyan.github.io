@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<p>1.考虑原型链的深复制
+	<div>
+function clone(old){
+   var F=function(){};
+   var Obj=new F();
+   for(var i in old){
+      if(typeof old[i]=='object'){
+	//  console.log(i);
+	//  console.log(old.hasOwnProperty(i));
+	   if(old.hasOwnProperty(i)){
+	    Obj[i]=clone(old[i]);
+	   
+	   }else{
+	     F.prototype[i]=clone(old[i]);
+	   }
+	   
+	  }else{
+	     if(old.hasOwnProperty(i)){
+		 	    Obj[i]=old[i];
+		 }else{
+		    F.prototype[i]=old[i];
+		 }
+
+	  }
+   }
+   return Obj;
+}	
+	</div>
+	<script type="text/javascript">
+	function clone(old){
+		   var F=function(){};
+		   var Obj=new F();
+		   for(var i in old){
+		      if(typeof old[i]=='object'){
+			//  console.log(i);
+			//  console.log(old.hasOwnProperty(i));
+			   if(old.hasOwnProperty(i)){
+			    Obj[i]=clone(old[i]);
+			   
+			   }else{
+			     F.prototype[i]=clone(old[i]);
+			   }
+			   
+			  }else{
+			     if(old.hasOwnProperty(i)){
+				 	    Obj[i]=old[i];
+				 }else{
+				    F.prototype[i]=old[i];
+				 }
+
+			  }
+		   }
+		   return Obj;
+		}	
+	
+	//类继承   如果基类方法被覆盖则永远访问不到
+	var Parent=function(){
+		this.name='parent';
+	}
+	Parent.prototype.get_name=function(){return this.name;}
+	var Child=function(){
+		this.name="child";
+	}
+	Child.prototype=new Parent();
+	//Child.prototype.get_name=function(){console.log('child say:'+this.name);}
+	var obj=new Child();
+	obj.get_name();
+	//对象继承
+	Object.beget=function(o){
+		var F=function(){};
+		F.prototype=o;
+		return new F();
+	}
+	var parent={
+			name:'parent',
+			get_name:function(){return this.name;}
+	}
+	var child=Object.beget(parent);
+	child.name='child';
+	child.get_name();
+	//函数化继承
+	var parent=function(config){//config完全私有
+		var that={};
+		that.get_name=function(){
+			console.log('parent say:'+config.name);
+		}
+		return that;
+	}
+	var myParent=parent({name:'papa'});
+	var child=function(config){
+		var that=parent(config);
+		var super_get_name=that.get_name;
+		that.get_name=function(){super_get_name();console.log('child');};
+		return that;
+	}
+	var obj=child({name:'childddd'});
+	obj.get_name();
+	
+	//检测是否数组
+	function is_array(value){
+		return value&&typeof value=='object'
+		&&typeof value.length='number'
+		&&typeof value.splice=='function'
+		&&!value.propertyIsEnumerable('length');
+	}
+	
+	//http请求
+	function getHttpRequest(){
+		var xhr=false;
+		if(window.XMLHttpRequest()){
+			xhr=new XMLHttpRequest();
+		}else if(window.ActiveXObject){
+			try{
+				xhr=new ActiveXObject('Msxml2.XMLHTTP');
+			}catch(e){
+				try{
+					xhr=new ActiveXObject('Microsoft.XMLHTTP');
+				}catch(e){
+					xhr=false;
+				}
+			}
+		}
+		return xhr;
+	}
+	var request=getHttpRequest();
+	if(request){
+		request.onreadystatechange=function(){
+			if(request.readyState==4){
+				if(request.status==200){
+					
+				}
+			}
+		}
+		request.open('GET','xxxx.php',true);
+		request.send(null);
+		request.open('POST','xxxx.php',true);
+		request.setRequestHeader('Content-Type','application/x-www-form-urlencode');
+		request.send('name=hello+world&message=test');
+	}
+	</script>
+</body>
+</html>
