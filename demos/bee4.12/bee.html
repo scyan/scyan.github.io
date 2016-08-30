@@ -36,7 +36,7 @@
 	text-decoration:none
 }
 .handle-plus{
-	margin-left:40px;
+	margin-left:46px;
 }
 .speed{
     position:absolute;
@@ -55,7 +55,7 @@
 <canvas id="bkCanvas" width="500" height="550" class="canvas">your browser does not support html5.您的浏览器不支持html5哟╮(╯_╰)╭,请使用chrome或者火狐或者一切支持html5的浏览器打开。
 </canvas>
 <canvas id="handleCanvas" width="500" height="550" class="canvas"></canvas>
-<p id="speed-handle"><span >调节移动速度</span><a href="#"class="handle handle-minus" onclick="slowDown()">-</a><span id="speed"class="speed"></span><a href="#"class="handle handle-plus" onclick="speedUp()">+</a></p>
+<p id="speed-handle"><span >调节移动速度</span><a href="#"class="handle handle-minus" action-type="slowDown">-</a><span id="speed"class="speed"></span><a href="#"class="handle handle-plus" action-type="speedUp">+</a></p>
 </div>	
 <script type="text/javascript" >
 seajs.config({
